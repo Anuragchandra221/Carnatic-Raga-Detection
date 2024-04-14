@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+
+    <div>
+        <form action="/predict" method="POST" enctype="multipart/form-data">
+            <label for="audio">Select your audio file</label>
+            <input type="text" name="anurag" />
+            <input type="file" name="audiofile" id="audio" accept="audio/*"/>
+            <input type="submit" value="Proceed">
+        </form>
+        <p>The predicted raga is {{raga}}</p>
+    </div>
+    
+{% endblock %}
+    
