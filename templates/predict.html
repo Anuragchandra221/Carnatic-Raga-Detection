@@ -2,15 +2,21 @@
 
 
 {% block content %}
-
-    <div>
-        <form action="/predict" method="POST" enctype="multipart/form-data">
-            <label for="audio">Select your audio file</label>
-            <input type="text" name="anurag" />
-            <input type="file" name="audiofile" id="audio" accept="audio/*"/>
-            <input type="submit" value="Proceed">
-        </form>
-        <p>The predicted raga is {{raga}}</p>
+    <div class="predict-div-full">
+        <div class="predict-div mx-auto p-4">
+            <form action="/predict" class="d-flex flex-column align-items-center" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="audio">YouTube Link</label>
+                    <input type="text" name="anurag" />
+                </div>
+                <p>OR</p>
+                <input type="file" class="mb-3" name="audiofile" id="audio" accept="audio/*"/>
+                <input type="submit" class="w-100 mb-3" value="Proceed">
+            </form>
+            {% if raga %}
+                <p>The predicted raga is {{raga}}</p>
+            {% endif %}
+        </div>
     </div>
     
 {% endblock %}
