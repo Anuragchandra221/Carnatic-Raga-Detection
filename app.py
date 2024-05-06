@@ -7,6 +7,7 @@ import pathlib
 from Preprocessing.splitting_to_chunks import split_audio
 from Preprocessing.create_spectrogram import spectro
 from model.raga import predict_raga
+from download_yt import download_audio
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
@@ -19,6 +20,8 @@ def home():
 def predict():
     if(request.method=="POST"):
         audio = request.files['audiofile']
+        yt = request.form['anurag']
+        print(yt, 'yt')
         if(audio):
             filename = secure_filename(audio.filename)
             file_path = os.path.join("uploads", filename)
@@ -40,6 +43,18 @@ def predict():
             most_common = predict_raga(path)
 
             return render_template("predict.html", raga=most_common)
+        else:
+            download_audio(yt)
+            convert_to_wav('uploads/audio.mp3', 'uploads/audio.wav')
+            # path = "\\uploads\\audio.wav"
+            split_audio('uploads/audio.wav', segment_duration_ms=5000)
+            path = os.path.abspath(os.getcwd()) + "\\uploads\\split_audios\\"
+            spectro(path)
+            path = os.path.abspath(os.getcwd()) + "\\model\\test_raga\\"
+            most_common = predict_raga(path)
+ 
+            return render_template("predict.html", raga=most_common)
+
     return render_template("predict.html")
 
 if __name__=="__main__":

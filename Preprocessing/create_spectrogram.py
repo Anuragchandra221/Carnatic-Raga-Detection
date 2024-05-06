@@ -8,13 +8,13 @@ def create_spectrogram(audio_file_path, output_folder):
     y, sr = librosa.load(audio_file_path)
 
     D = librosa.amplitude_to_db(np.abs(librosa.stft(y)), ref=np.max)
-    plt.figure(figsize=(10, 4))
-    librosa.display.specshow(D, sr=sr, x_axis='time', y_axis='log')
-    plt.colorbar(format='%+2.0f dB')
-    plt.title('Spectrogram')
-    plt.xlabel('Time')
-    plt.ylabel('Frequency')
-    plt.tight_layout()
+    # plt.figure(figsize=(10, 4))
+    # librosa.display.specshow(D, sr=sr, x_axis='time', y_axis='log')
+    # plt.colorbar(format='%+2.0f dB')
+    # plt.title('Spectrogram')
+    # plt.xlabel('Time')
+    # plt.ylabel('Frequency')
+    # plt.tight_layout()
 
     base_name = os.path.splitext(os.path.basename(audio_file_path))[0]
     output_image_path = f"{output_folder}/{base_name}_spectrogram.png"
