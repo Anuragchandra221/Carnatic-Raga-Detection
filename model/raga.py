@@ -8,7 +8,8 @@ import os
 def predict_raga(img_path):
     print("HIHIHI")
     batch_images = []
-    ragas = ['Aaberi', 'Aanandha bairavi', 'Bilahari', 'Chakravaakam', 'Dharbaarikaanada', 'Hamsadhwani', 'Harikaamboji', 'Hindolam', 'Joog', 'Kaapi', 'Kalyani', 'Kharaharapriya', 'Madhyamaavathi', 'Mohanam', 'Shankaraabharanam', 'Shanmuka priya', 'Shivaranjini', 'Shudhadhanyasi', 'Sindhu bairavi', 'Vrindhaavana saaranga', 'Yamuna kalyani']
+    ragas = ['Madhyamavathi', 'Mohanam', 'Kalyani', 'Kappi', 'Abheri', 'Sindhubairavi']
+
     dictionary = {}
     custom_optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
     # Iterate through images in the folder
@@ -32,6 +33,6 @@ def predict_raga(img_path):
         except:
             dictionary[ragas[i]] = 1
     dictionary = find_consec(most_common, arr)
-    print(arr)
+    print(len(arr), len(batch_images), len(predictions))
     print(dictionary)
-    return ragas[most_common]
+    return (ragas[most_common], dictionary)

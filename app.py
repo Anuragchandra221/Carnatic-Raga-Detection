@@ -40,10 +40,10 @@ def predict():
             path = os.path.abspath(os.getcwd()) + "\\uploads\\split_audios\\"
             spectro(path)
             path = os.path.abspath(os.getcwd()) + "\\model\\test_raga\\"
-            most_common = predict_raga(path)
-
+            most_common, dictionary = predict_raga(path)
+            print("predicted raga", most_common)
             return render_template("predict.html", raga=most_common)
-        else:
+        else: 
             download_audio(yt)
             convert_to_wav('uploads/audio.mp3', 'uploads/audio.wav')
             # path = "\\uploads\\audio.wav"
@@ -51,8 +51,8 @@ def predict():
             path = os.path.abspath(os.getcwd()) + "\\uploads\\split_audios\\"
             spectro(path)
             path = os.path.abspath(os.getcwd()) + "\\model\\test_raga\\"
-            most_common = predict_raga(path)
- 
+            most_common, dictioinary = predict_raga(path)
+            print("predicted raga", most_common)
             return render_template("predict.html", raga=most_common)
 
     return render_template("predict.html")

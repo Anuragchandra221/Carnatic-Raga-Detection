@@ -25,6 +25,17 @@ def create_spectrogram(audio_file_path, output_folder):
     # print(f"Spectrogram saved as {output_image_path}")
 
 def spectro(input_folder_path):
+
+    path = os.path.abspath(os.getcwd()) + "\\model\\test_raga\\"
+    for filename in os.listdir(path):
+        file_path = os.path.join(path, filename) 
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+                print(f"Deleted {file_path}")
+        except Exception as e:
+            print(f"Failed to delete {file_path}: {e}")
+
     # print(input_folder_path)
     for subfolder in os.listdir(input_folder_path):
         # sub_folder = os.path.join(input_folder_path, subfolder)
