@@ -14,4 +14,4 @@ pip install -r requirements.txt
 ```
 python app.py
 ```
-4. Go to ```localhost:8000``` on your browser.
+4. Go to ```localhost:5000``` on your browser.
